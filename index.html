@@ -1043,7 +1043,12 @@
     .dm-body { grid-template-columns: 1fr; }
     .day1-grid { grid-template-columns: 1fr; }
     .score-gap { grid-template-columns: 1fr; gap: 16px; }
-    .score-arrow { transform: rotate(90deg); }
+    /* Score arrow: rotating the whole element rotated the reason text too, making it vertical.
+       Fix: hide the inline → character (font-size:0), swap to ↓ via pseudo-element, keep
+       .reason text horizontal at its declared font-size. */
+    .score-arrow { transform: none; font-size: 0; padding: 4px 0; }
+    .score-arrow::before { content: "↓"; display: block; font-size: 22px; color: var(--violet); line-height: 1; margin-bottom: 8px; }
+    .score-arrow .reason { font-size: 10px; }
 
     /* Persona matrix — collapse 4-col grid, hide header row */
     .persona-primer-grid { grid-template-columns: 1fr; gap: 6px; }
